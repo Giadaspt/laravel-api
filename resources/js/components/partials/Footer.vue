@@ -1,6 +1,8 @@
 <template>
-  <footer>
-    Footer
+  <footer class="container-fluid">
+      <h4>
+        Made by Giada with &hearts;
+      </h4>
   </footer>
 </template>
 
@@ -11,5 +13,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+  
 </style>

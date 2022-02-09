@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 
-class ApiPostsController extends Controller
+class ApiPostController extends Controller
 {
     public function apiIndex(){
         $posts = Post::all();

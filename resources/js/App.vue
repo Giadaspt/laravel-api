@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="container-fluid">
 
   <Header/>
+
+  <PostPage />
 
   <Footer/>
 
@@ -10,8 +12,9 @@
 </template>
 
 <script>
-import Header from './components/partials/Header.vue';
-import Footer from './components/partials/Footer.vue';
+import Header from './components/partials/Header';
+import Footer from './components/partials/Footer';
+import PostPage from './components/PostPage';
 
 
 export default {
@@ -20,10 +23,12 @@ export default {
   components: {
     Header,
     Footer,
+    PostPage,
   }
 }
 </script>
 
 <style scoped lang="scss">
+
 
 </style>
