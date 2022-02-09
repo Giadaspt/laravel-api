@@ -2066,6 +2066,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Post",
   props: {
@@ -2589,9 +2591,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "main",
-    { staticClass: "container" },
+    { staticClass: "container allPosts" },
     [
-      _c("h2", [_vm._v("\n    Tutti i post\n  ")]),
+      _c("h2", [_vm._v("\n      Tutti i post\n    ")]),
       _vm._v(" "),
       _vm._l(_vm.posts, function (post) {
         return _c("Post", { key: post.id, attrs: { postSingle: post } })
@@ -2704,12 +2706,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h4", [_vm._v(" " + _vm._s(_vm.postSingle.title) + " ")]),
-    _vm._v(" "),
-    _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.created_at) + " ")]),
-    _vm._v(" "),
-    _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.content) + " ")]),
+  return _c("section", { staticClass: "singlePostSection" }, [
+    _c("div", { staticClass: "singlePost" }, [
+      _c("h4", [_vm._v(" " + _vm._s(_vm.postSingle.title) + " ")]),
+      _vm._v(" "),
+      _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.created_at) + " ")]),
+      _vm._v(" "),
+      _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.content) + " ")]),
+    ]),
   ])
 }
 var staticRenderFns = []

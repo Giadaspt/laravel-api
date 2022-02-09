@@ -1,9 +1,11 @@
 <template>
-  <div>
-    <h4> {{postSingle.title}} </h4>
-    <p> {{ postSingle.created_at }} </p>
-    <p> {{ postSingle.content }} </p>
-  </div>
+  <section class="singlePostSection">
+    <div class="singlePost">
+      <h4> {{postSingle.title}} </h4>
+      <p> {{ postSingle.created_at }} </p>
+      <p> {{ postSingle.content }} </p>
+    </div>
+  </section>
 </template>
 
 <script>

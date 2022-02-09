@@ -1,13 +1,13 @@
 <template>
-  <main class="container">
-    <h2>
-      Tutti i post
-    </h2>
-    <Post
-       v-for="post in posts"
-       :key="post.id"
-       :postSingle="post"
-    />
+  <main class="container allPosts">
+      <h2>
+        Tutti i post
+      </h2>
+      <Post
+        v-for="post in posts"
+        :key="post.id"
+        :postSingle="post"
+      />
   </main>
 </template>
 
