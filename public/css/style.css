@@ -64,3 +64,8 @@ footer {
 .allPosts h2 {
   text-align: center;
 }
+
+button {
+  padding: 8px;
+  font-size: 18px;
+}

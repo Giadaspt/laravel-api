@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ApiPostController extends Controller
 {
     public function apiIndex(){
-        $posts = Post::all();
+        $posts = Post::paginate(4);
 
         return response()->json($posts); 
     }

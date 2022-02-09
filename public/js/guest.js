@@ -1961,6 +1961,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostPage",
@@ -1969,8 +1991,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      apiUrl: "http://127.0.0.1:8000/api/posts",
-      posts: []
+      apiUrl: "http://127.0.0.1:8000/api/posts?page=",
+      posts: [],
+      paginate: {}
     };
   },
   mounted: function mounted() {
@@ -1980,9 +2003,14 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
-      axios.get(this.apiUrl).then(function (res) {
-        _this.posts = res.data;
-        console.log(_this.posts);
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get(this.apiUrl + page).then(function (res) {
+        _this.posts = res.data.data;
+        _this.paginate = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
+        console.log(_this.paginate);
       });
     }
   }
@@ -2073,6 +2101,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     "postSingle": Object
   },
+  computed: {
+    cutContent: function cutContent() {
+      return this.postSingle.content.substr(0, 75) + '...';
+    }
+  },
   methods: {
     getDate: function getDate() {
       var date = new Date(this.postSingle.created_at);
@@ -2080,11 +2113,7 @@ __webpack_require__.r(__webpack_exports__);
         day: '2-digit',
         month: '2-digit',
         year: 'numeric'
-      }); // let formatDate = 'dd-mm-YYYY'
-      //   .replace("2-digit", date.getDay())
-      //   .replace('mm', date.getMonth() + 1 )
-      //   .replace('YYYY', date.getFullYear());
-
+      });
       return formatDate;
     }
   }
@@ -2613,6 +2642,48 @@ var render = function () {
       _vm._l(_vm.posts, function (post) {
         return _c("Post", { key: post.id, attrs: { postSingle: post } })
       }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { disabled: _vm.paginate.current === 1 },
+          on: {
+            click: function ($event) {
+              return _vm.getPosts(_vm.paginate.current - 1)
+            },
+          },
+        },
+        [_vm._v("\n     <\n    ")]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.paginate.last, function (page) {
+        return _c(
+          "button",
+          {
+            key: page,
+            attrs: { disabled: _vm.paginate.current === page },
+            on: {
+              click: function ($event) {
+                return _vm.getPosts(page)
+              },
+            },
+          },
+          [_vm._v(" \n      " + _vm._s(page) + "\n    ")]
+        )
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          attrs: { disabled: _vm.paginate.current === _vm.paginate.last },
+          on: {
+            click: function ($event) {
+              return _vm.getPosts(_vm.paginate.current + 1)
+            },
+          },
+        },
+        [_vm._v("\n      >\n    ")]
+      ),
     ],
     2
   )
@@ -2727,7 +2798,7 @@ var render = function () {
       _vm._v(" "),
       _c("p", [_vm._v(" " + _vm._s(this.getDate()) + " ")]),
       _vm._v(" "),
-      _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.content) + " ")]),
+      _c("p", [_vm._v(" " + _vm._s(_vm.cutContent) + " ")]),
     ]),
   ])
 }
