@@ -2072,6 +2072,21 @@ __webpack_require__.r(__webpack_exports__);
   name: "Post",
   props: {
     "postSingle": Object
+  },
+  methods: {
+    getDate: function getDate() {
+      var date = new Date(this.postSingle.created_at);
+      var formatDate = date.toLocaleDateString('it', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      }); // let formatDate = 'dd-mm-YYYY'
+      //   .replace("2-digit", date.getDay())
+      //   .replace('mm', date.getMonth() + 1 )
+      //   .replace('YYYY', date.getFullYear());
+
+      return formatDate;
+    }
   }
 });
 
@@ -2710,7 +2725,7 @@ var render = function () {
     _c("div", { staticClass: "singlePost" }, [
       _c("h4", [_vm._v(" " + _vm._s(_vm.postSingle.title) + " ")]),
       _vm._v(" "),
-      _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.created_at) + " ")]),
+      _c("p", [_vm._v(" " + _vm._s(this.getDate()) + " ")]),
       _vm._v(" "),
       _c("p", [_vm._v(" " + _vm._s(_vm.postSingle.content) + " ")]),
     ]),
