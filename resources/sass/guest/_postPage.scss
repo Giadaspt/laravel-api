@@ -1,12 +1,16 @@
 .allPosts {
+  width: 60%;
   margin: 34px auto;
 
-  h2{
-    text-align: center;
+
+  
+  button {
+    font-size: 14px;
+    background-color: rgba(255, 127, 80, 0.705);
+    padding: 4px;
+    margin-right: 6px ;
+    border-radius: 3px;
+    border: .5px solid darkgrey;
   }
 }
 
-button {
-  padding: 8px;
-  font-size: 18px;
-}

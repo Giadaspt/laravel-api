@@ -48,24 +48,19 @@ footer {
   background-color: #4d4d4d;
 }
 
-.singlePostSection {
-  width: 60%;
-  min-width: 10%;
-  margin: 0 auto;
-}
-
 .singlePost {
   margin: 34px 0;
 }
 
 .allPosts {
+  width: 60%;
   margin: 34px auto;
 }
-.allPosts h2 {
-  text-align: center;
-}
-
-button {
-  padding: 8px;
-  font-size: 18px;
+.allPosts button {
+  font-size: 14px;
+  background-color: rgba(255, 127, 80, 0.705);
+  padding: 4px;
+  margin-right: 6px;
+  border-radius: 3px;
+  border: 0.5px solid darkgrey;
 }

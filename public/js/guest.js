@@ -1983,6 +1983,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostPage",
@@ -2103,7 +2106,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     cutContent: function cutContent() {
-      return this.postSingle.content.substr(0, 75) + '...';
+      return this.postSingle.content.substr(0, 100) + '...';
     }
   },
   methods: {
@@ -2635,7 +2638,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "main",
-    { staticClass: "container allPosts" },
+    { staticClass: "allPosts" },
     [
       _c("h2", [_vm._v("\n      Tutti i post\n    ")]),
       _vm._v(" "),
@@ -2644,45 +2647,51 @@ var render = function () {
       }),
       _vm._v(" "),
       _c(
-        "button",
-        {
-          attrs: { disabled: _vm.paginate.current === 1 },
-          on: {
-            click: function ($event) {
-              return _vm.getPosts(_vm.paginate.current - 1)
-            },
-          },
-        },
-        [_vm._v("\n     <\n    ")]
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.paginate.last, function (page) {
-        return _c(
-          "button",
-          {
-            key: page,
-            attrs: { disabled: _vm.paginate.current === page },
-            on: {
-              click: function ($event) {
-                return _vm.getPosts(page)
+        "div",
+        [
+          _c(
+            "button",
+            {
+              attrs: { disabled: _vm.paginate.current === 1 },
+              on: {
+                click: function ($event) {
+                  return _vm.getPosts(_vm.paginate.current - 1)
+                },
               },
             },
-          },
-          [_vm._v(" \n      " + _vm._s(page) + "\n    ")]
-        )
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          attrs: { disabled: _vm.paginate.current === _vm.paginate.last },
-          on: {
-            click: function ($event) {
-              return _vm.getPosts(_vm.paginate.current + 1)
+            [_vm._v("\n        <\n        ")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.paginate.last, function (page) {
+            return _c(
+              "button",
+              {
+                key: page,
+                attrs: { disabled: _vm.paginate.current === page },
+                on: {
+                  click: function ($event) {
+                    return _vm.getPosts(page)
+                  },
+                },
+              },
+              [_vm._v(" \n          " + _vm._s(page) + "\n        ")]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              attrs: { disabled: _vm.paginate.current === _vm.paginate.last },
+              on: {
+                click: function ($event) {
+                  return _vm.getPosts(_vm.paginate.current + 1)
+                },
+              },
             },
-          },
-        },
-        [_vm._v("\n      >\n    ")]
+            [_vm._v("\n          >\n        ")]
+          ),
+        ],
+        2
       ),
     ],
     2

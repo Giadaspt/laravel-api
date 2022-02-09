@@ -1,35 +1,38 @@
 <template>
-  <main class="container allPosts">
+  <main class="allPosts">
       <h2>
         Tutti i post
       </h2>
+
       <Post
         v-for="post in posts"
         :key="post.id"
         :postSingle="post"
       />
+      
+      <div>
+          <button
+            @click="getPosts(paginate.current - 1) "
+            :disabled = "paginate.current === 1"
+          >
+          &#60;
+          </button>
 
-      <button
-        @click="getPosts(paginate.current - 1) "
-        :disabled = "paginate.current === 1"
-      >
-       &#60;
-      </button>
+          <button
+            v-for="page in paginate.last"
+            :key="page"
+            @click="getPosts(page)"
+            :disabled = "paginate.current === page"> 
+            {{page}}
+          </button>
 
-      <button
-        v-for="page in paginate.last"
-        :key="page"
-        @click="getPosts(page)"
-        :disabled = "paginate.current === page"> 
-        {{page}}
-      </button>
-
-      <button
-        @click="getPosts(paginate.current + 1)"
-        :disabled = "paginate.current === paginate.last"
-      >
-        &#62;
-      </button>
+          <button
+            @click="getPosts(paginate.current + 1)"
+            :disabled = "paginate.current === paginate.last"
+          >
+            &#62;
+          </button>
+      </div>
   </main>
 </template>
 

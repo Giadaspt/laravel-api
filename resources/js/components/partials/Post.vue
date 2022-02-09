@@ -18,7 +18,7 @@ export default {
 
   computed: {
     cutContent(){
-      return this.postSingle.content.substr(0, 75) + '...';
+      return this.postSingle.content.substr(0, 100) + '...';
     }
   },
 
