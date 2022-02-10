@@ -1986,6 +1986,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostPage",
@@ -1995,7 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       apiUrl: "http://127.0.0.1:8000/api/posts?page=",
-      posts: [],
+      posts: null,
       paginate: {}
     };
   },
@@ -2007,6 +2010,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      this.posts = null;
       axios.get(this.apiUrl + page).then(function (res) {
         _this.posts = res.data.data;
         _this.paginate = {
@@ -2089,6 +2093,17 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2636,66 +2651,66 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "main",
-    { staticClass: "allPosts" },
-    [
-      _c("h2", [_vm._v("\n      Tutti i post\n    ")]),
-      _vm._v(" "),
-      _vm._l(_vm.posts, function (post) {
-        return _c("Post", { key: post.id, attrs: { postSingle: post } })
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c(
-            "button",
-            {
-              attrs: { disabled: _vm.paginate.current === 1 },
-              on: {
-                click: function ($event) {
-                  return _vm.getPosts(_vm.paginate.current - 1)
-                },
-              },
-            },
-            [_vm._v("\n        <\n        ")]
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.paginate.last, function (page) {
-            return _c(
+  return _c("main", { staticClass: "allPosts" }, [
+    _c("h2", [_vm._v("\n      Tutti i post\n    ")]),
+    _vm._v(" "),
+    _vm.posts
+      ? _c(
+          "div",
+          [
+            _vm._l(_vm.posts, function (post) {
+              return _c("Post", {
+                key: "" + post.id,
+                attrs: { postSingle: post },
+              })
+            }),
+            _vm._v(" "),
+            _c(
               "button",
               {
-                key: page,
-                attrs: { disabled: _vm.paginate.current === page },
+                attrs: { disabled: _vm.paginate.current === 1 },
                 on: {
                   click: function ($event) {
-                    return _vm.getPosts(page)
+                    return _vm.getPosts(_vm.paginate.current - 1)
                   },
                 },
               },
-              [_vm._v(" \n          " + _vm._s(page) + "\n        ")]
-            )
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              attrs: { disabled: _vm.paginate.current === _vm.paginate.last },
-              on: {
-                click: function ($event) {
-                  return _vm.getPosts(_vm.paginate.current + 1)
+              [_vm._v("\n          <\n          ")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.paginate.last, function (page) {
+              return _c(
+                "button",
+                {
+                  key: page.id,
+                  attrs: { disabled: _vm.paginate.current === page },
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(page)
+                    },
+                  },
+                },
+                [_vm._v(" \n            " + _vm._s(page) + "\n          ")]
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                attrs: { disabled: _vm.paginate.current === _vm.paginate.last },
+                on: {
+                  click: function ($event) {
+                    return _vm.getPosts(_vm.paginate.current + 1)
+                  },
                 },
               },
-            },
-            [_vm._v("\n          >\n        ")]
-          ),
-        ],
-        2
-      ),
-    ],
-    2
-  )
+              [_vm._v("\n            >\n          ")]
+            ),
+          ],
+          2
+        )
+      : _c("div", [_c("h3", [_vm._v(" Caricamento... ")])]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2727,7 +2742,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "container-fluid" }, [
-      _c("h4", [_vm._v("\n      Made by Giada with ♥\n    ")]),
+      _c("h4", [_vm._v("\n      Made by Giada with ... \n    ")]),
     ])
   },
 ]
@@ -2804,6 +2819,24 @@ var render = function () {
   return _c("section", { staticClass: "singlePostSection" }, [
     _c("div", { staticClass: "singlePost" }, [
       _c("h4", [_vm._v(" " + _vm._s(_vm.postSingle.title) + " ")]),
+      _vm._v(" "),
+      _vm.postSingle.category
+        ? _c("p", [
+            _vm._v(
+              "\n      " + _vm._s(_vm.postSingle.category.name) + "\n    "
+            ),
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "div",
+        _vm._l(_vm.postSingle.tags, function (tag) {
+          return _c("span", { key: "" + tag.id }, [
+            _vm._v("\n      " + _vm._s(tag.name) + "\n      "),
+          ])
+        }),
+        0
+      ),
       _vm._v(" "),
       _c("p", [_vm._v(" " + _vm._s(this.getDate()) + " ")]),
       _vm._v(" "),
@@ -15120,7 +15153,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************************************************!*\
   !*** ./resources/js/components/PostPage.vue?vue&type=template&id=2a25f53a&scoped=true& ***!
   \*****************************************************************************************/
-/*! exports provided: render, staticRenderFns */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15276,15 +15309,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./resources/js/components/partials/Post.vue ***!
   \***************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Post_vue_vue_type_template_id_4c7d523c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Post.vue?vue&type=template&id=4c7d523c&scoped=true& */ "./resources/js/components/partials/Post.vue?vue&type=template&id=4c7d523c&scoped=true&");
 /* harmony import */ var _Post_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Post.vue?vue&type=script&lang=js& */ "./resources/js/components/partials/Post.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Post_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Post_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -15314,7 +15346,7 @@ component.options.__file = "resources/js/components/partials/Post.vue"
 /*!****************************************************************************!*\
   !*** ./resources/js/components/partials/Post.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15328,7 +15360,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************************!*\
   !*** ./resources/js/components/partials/Post.vue?vue&type=template&id=4c7d523c&scoped=true& ***!
   \**********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

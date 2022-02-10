@@ -4,35 +4,38 @@
         Tutti i post
       </h2>
 
-      <Post
-        v-for="post in posts"
-        :key="post.id"
-        :postSingle="post"
-      />
-      
-      <div>
-          <button
-            @click="getPosts(paginate.current - 1) "
-            :disabled = "paginate.current === 1"
-          >
-          &#60;
-          </button>
+    <div v-if="posts">
+        <Post
+          v-for="post in posts"
+          :key="`${post.id}`"
+          :postSingle="post"
+        />
+            <button
+              @click="getPosts(paginate.current - 1) "
+              :disabled = "paginate.current === 1"
+            >
+            &#60;
+            </button>
 
-          <button
-            v-for="page in paginate.last"
-            :key="page"
-            @click="getPosts(page)"
-            :disabled = "paginate.current === page"> 
-            {{page}}
-          </button>
+            <button
+              v-for="page in paginate.last"
+              :key="page.id"
+              @click="getPosts(page)"
+              :disabled = "paginate.current === page"> 
+              {{page}}
+            </button>
 
-          <button
-            @click="getPosts(paginate.current + 1)"
-            :disabled = "paginate.current === paginate.last"
-          >
-            &#62;
-          </button>
-      </div>
+            <button
+              @click="getPosts(paginate.current + 1)"
+              :disabled = "paginate.current === paginate.last"
+            >
+              &#62;
+            </button>
+
+    </div>
+    <div v-else>
+      <h3> Caricamento... </h3>
+    </div>
   </main>
 </template>
 
@@ -49,7 +52,7 @@ export default {
   data(){
     return {
       apiUrl: "http://127.0.0.1:8000/api/posts?page=",
-      posts: [],
+      posts: null,
       paginate: {},
     }
   },
@@ -60,6 +63,8 @@ export default {
 
   methods: {
     getPosts(page=1){
+      this.posts = null;
+
       axios.get(this.apiUrl + page)
         .then(res => {
           this.posts = res.data.data;

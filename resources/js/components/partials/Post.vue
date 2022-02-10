@@ -2,6 +2,17 @@
   <section class="singlePostSection">
     <div class="singlePost">
       <h4> {{postSingle.title}} </h4>
+      <p
+        v-if="postSingle.category" >
+        {{ postSingle.category.name }}
+      </p>
+      <div>
+        <span
+        v-for="tag in postSingle.tags"
+        :key="`${tag.id}`">
+        {{tag.name}}
+        </span>
+      </div>
       <p> {{ this.getDate() }} </p>
       <p> {{ cutContent }} </p>
     </div>

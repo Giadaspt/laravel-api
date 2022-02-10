@@ -1,7 +1,7 @@
 <template>
   <footer class="container-fluid">
       <h4>
-        Made by Giada with &hearts;
+        Made by Giada with ... 
       </h4>
   </footer>
 </template>

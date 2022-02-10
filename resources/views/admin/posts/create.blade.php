@@ -35,9 +35,7 @@
         <label for="content" class="form-label">Scrivi qui quello che vuoi</label>
         <textarea class="form-control @error('content') is-invalid @enderror" 
         name="content"
-        id="exampleFormControlTextarea1" rows="3">
-        {{ old('content') }}
-        </textarea>
+        id="exampleFormControlTextarea1" rows="3">{{ old('content') }}</textarea>
         @error('content')
           <p class="text-danger">
             {{$message}}
@@ -47,8 +45,8 @@
         <div class="mt-3">
           <label for="content" class="form-label">Seleziona una categoria</label>
           <select name="category_id" id="category_id" class="form-control" >
-            <option>Scegli la categoria</option>
-  
+            
+            <option value="">Scegli la categoria</option>
             @foreach ($categories as $category)
               <option @if ($category->id == old('category_id')) selected
               @endif value="{{$category->id}}">{{ $category->name }}</option>
